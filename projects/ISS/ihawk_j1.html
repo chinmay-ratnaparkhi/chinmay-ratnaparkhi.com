@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Chinmay Ratnaparkhi</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+<script>
+
+var frame_loads=0;
+var log_failed=0;
+
+function checkAndSet(){
+	frame_loads++;
+	
+	if(frame_loads==1){
+		if(log_failed==0){
+			$('#welcome_log').modal('show');
+		}
+	}
+	
+	
+	if(frame_loads==2){
+		setTimeout(
+			function(){
+				$('#log_alright').modal('show');
+			},500);
+	}
+	
+	if(frame_loads==3){
+		upload_passport();
+	}
+	if(frame_loads>3){
+		upload_I20();
+	}
+
+}
+
+
+function login_failed(){
+		if(log_failed < 3)
+		{
+			document.getElementById('log_in_again').innerHTML='<center><div id="log_try_again" class="alert alert-danger"><p class="lead">Let us try again!</p></div></center>';
+			log_failed++;
+			setTimeout(function(){
+						$('#log_try_again').remove();
+						frame_loads=0;
+						document.getElementById('stage_area').src='https://ihawk.ku.edu/istart/controllers/client/kansas-login.html?CFID=19028&CFTOKEN=790fa9ded849cd10-DCB78989-E03D-FEFF-1A70A51F51359B22';
+						$('#log_alright').modal('hide');
+						document.getElementById('log_in_again').innerHTML='<center><button type="button" class="btn btn-success" data-dismiss="modal" onClick="upload_passport();">Yes</button><button type="button" class="btn btn-danger" data-dismiss="modal" onClick="login_failed();">&nbsp;No&nbsp;</button></center>';
+					},1000);
+		}else{
+			alert("You need help!!");
+		}
+}
+
+function upload_passport(){
+		window.location="passportUpload_j.html";
+}
+</script>		
+</head>
+	
+<body>
+
+
+
+<!--- ==================================================================================================================================================================== -->
+<!-- Modal Welcome-->
+<div class="modal fade" id="welcome_log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-body">
+		   <h1>Log In</h1>
+		   <hr>
+			<p class="lead">Please log in using your KU Online ID and Password.</p>
+			<p>Your KU Online ID is a combination of 2 letters and 6 digits. For example : <strong>a123z456</strong>.</p>
+		</div>
+		<div class="modal-footer">
+		<center>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Alright</button>
+		</center>
+	  </div>
+	  </div>
+    </div>
+  </div>
+</div>
+<!----- ==================================================================================================================================================================== --->
+<!-- Dialog Log Okay?-->
+<div class="modal fade" id="log_alright" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-body">
+		   <h1>Log In</h1>
+		   <hr>
+			<p class="lead">Were you able to log in successfully?</p>
+		</div>
+		<div class="modal-footer" id="log_in_again">
+		<center>
+			<button type="button" class="btn btn-success" data-dismiss="modal" onClick="upload_passport();">Yes</button>
+			<button type="button" class="btn btn-danger" data-dismiss="modal" onClick="login_failed();">&nbsp;No&nbsp;</button>
+		</center>
+	  </div>
+	  </div>
+    </div>
+  </div>
+</div>
+<!--- ================================================================================================================================================================-->
+	<center><iframe id= "stage_area" src="https://ihawk.ku.edu/istart/controllers/client/kansas-login.html?CFID=19028&CFTOKEN=790fa9ded849cd10-DCB78989-E03D-FEFF-1A70A51F51359B22" width="100%" style="position:absolute; left:0px;height:100%;border: none;" onLoad="checkAndSet();"></iframe></center>
+</body>	
+</html>

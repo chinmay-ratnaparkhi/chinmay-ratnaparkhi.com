@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="CoffeeCup Web Editor (www.coffeecup.com)">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+	<link href="css/bootstrap.css" rel="stylesheet"></link>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+    <title>ISS Checkin Summer 2015</title>
+  <script>
+	function cat_select(){
+		$("#select_cat").modal('show');
+	}
+	
+	function get_f1(){
+		window.location= 'i94Retrieval_f1.html';
+	}
+	
+	function get_j1(){
+		window.location= 'i94Retrieval_j1.html';
+	}
+  </script>
+  </head>
+  <style>
+  .jumbotron h1{
+	font-family:Bookman Antiqua;
+	font-size:58px;
+  }
+  
+  .jumbotron{
+	background:#CEE3F6;
+  }
+  
+  </style>
+  <body>
+<!----- ==================================================================================================================================================================== --->
+<!-- Modal CatSelect-->
+<div class="modal fade" id="select_cat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <center><h1>Please select your category</h1></center>
+	   <h1>&nbsp;</h1>
+				<div class="row">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-8">
+						<button type="button" class="btn btn-success btn-lg btn-block" data-dismiss="modal" onClick="get_f1()">
+							<h1>F-1 or F-2 Student</h1>
+						</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal" onClick="get_j1()">
+							<h1>J-1 or J-2 Student</h1>
+						</button>
+					</div>
+					<div class="col-lg-2"></div>
+				</div>
+				<h1>&nbsp;</h1>
+      </div>
+	  </div>
+    </div>
+  </div>
+</div>
+<!----- ==================================================================================================================================================================== --->  
+	<div class="container" style="position:absolute;left:10%;">
+		<div class="row">
+			<div class="col-sm-12">
+			<h4>&nbsp;</h4>
+				<center><h1 style="font-size:50px;">Station Selection</h1></center>
+				<h1>&nbsp;</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-5">
+				<div class="jumbotron">
+				 <center>
+					<a class="btn btn-default btn-lg" href="Scanner.html"><img src="images/scanning/being_scanned.gif" height="200px;"></a>
+					<h3>Scan & Upload Station</h3>
+				 </center>
+				</div>
+			</div>
+			<div class="col-sm-5">
+				<div class="jumbotron">
+				 <center>
+					
+					<a class="btn btn-default btn-lg" onClick="cat_select();"><img src="images/i94sttn.png" height="200px;"></a>
+					<h3>I-94 & Upload Station</h3>
+				 </center>
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+	
+	</div>
+  </body>
+</html>

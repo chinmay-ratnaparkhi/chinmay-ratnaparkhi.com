@@ -1,0 +1,38 @@
+<h3>Reviews</h3>
+
+<span ng-repeat='review in product.reviews'>
+	<blockquote >
+		<h4>{{review.stars}} Stars</h4>
+		{{review.comment}}
+		<cite class="clearfix">-{{review.author}}</cite>
+	</blockquote>
+</span>
+
+<!--- Review Form ---->
+<div class="head-space review-window enclosure" >								
+	<form name="reviewForm" ng-controller= 'reviewController as reviewCtrl' ng-submit='reviewForm.$valid && reviewCtrl.formSubmission(product)' novalidate>
+		<!--  Live Preview -->
+		<blockquote ng-hide='!reviewCtrl.demo.comment.length'>
+			<strong>{{reviewCtrl.demo.stars}} Stars</strong><br/>
+			{{reviewCtrl.demo.comment}}
+			<cite class="clearfix">—{{reviewCtrl.demo.author}}</cite>
+		</blockquote>
+		<!--  Review Form -->
+		<h4>Submit a Review</h4>
+		<fieldset class="form-group">
+			<select id="userStars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars" ng-model="reviewCtrl.demo.stars" required>
+				<option value="">Rate the Product</option>
+			</select>
+		</fieldset>
+		<fieldset class="form-group">
+			<textarea id="userComment" class="form-control" placeholder="Write a short review of the product..." title="Review" ng-model="reviewCtrl.demo.comment"></textarea>
+		</fieldset> 
+		<fieldset class="form-group">
+			<input id="userEmail" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" ng-model="reviewCtrl.demo.author" required />
+		</fieldset>
+		<fieldset class="form-group">
+			<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+		</fieldset>
+	</form>
+</div>
+<!--- Review Form Ends ------>

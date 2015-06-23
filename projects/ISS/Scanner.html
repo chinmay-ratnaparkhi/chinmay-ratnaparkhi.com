@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Chinmay Ratnaparkhi</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<style>
+	
+	.rotate90 {
+		-webkit-transform: rotate(90deg);
+		-moz-transform: rotate(90deg);
+		-o-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		transform: rotate(90deg);
+	}
+
+	#r-corner {
+		border-radius: 10px;
+		border: 1px solid #EFF5FB;
+		padding: 10px; 
+	}
+	
+	#header-box-primary {
+		border-radius: 10px;
+		padding: 25px;
+		background:#A9D0F5;
+	}
+	
+	#header-box-secondary {
+		border-radius: 10px;
+		padding: 10px;
+		background:#A9D0F5;
+	}
+	
+	li {
+       margin-bottom: 15px;
+	}
+
+	</style>	
+</head>
+<body onLoad="initiate();">
+<script>
+var screen_value=0;
+var student_cat=0;
+var buffer='';
+var user_document='';
+
+function initiate(){
+	buffer= '<div id="header-box-primary"><center><h1 style="font-size:45px;font-family:Book Antiqua;color:#0B4C5F">International Student Services</h1><span style="font-size:25px;font-family:Book Antiqua;">Summer 2015 - Check In</span></center></div><h1>&nbsp;</h1>'
+	print(buffer, "header_tron");
+	buffer='';
+	buffer= '<p>&nbsp;</p><p>&nbsp;</p><center><p class="lead" style="font-family:Roboto;font-size:25px;">Click the button below to begin</p></center><p>&nbsp;</p><button type="button" style="font-family:Helvetica"class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#screen0_welcome" onClick="resetScreen()"><h1>Get Started </h1></button>';
+	print(buffer, "print_canvas");
+}
+
+function resetScreen(){
+	buffer='<div id="header-box-secondary"><center><h1 style="font-size:45px;font-family:Book Antiqua;color:#0B4C5F">International Student Services</h1></center></div><p>&nbsp;</p>';
+	print(buffer, "header_tron");
+	buffer='';
+	print(buffer, "print_canvas");
+	buffer='<center><button type="button"class="btn btn-primary btn-lg" onClick="resume()"><h2>Continue</h2></button></center>'
+	print(buffer, "continue_center");
+}
+
+
+function print(input_text, location){
+	document.getElementById(location).innerHTML=input_text;
+}
+
+function screen1_cat_select(){
+	if(screen_value==0){
+		screen_value=1;
+	}
+	$('#screen1_catSelect').modal('show')
+
+}
+
+function resume(given){
+	if(screen_value==0 || given==0){
+		$('#screen0_welcome').modal('show')
+	}
+	else if(screen_value==1 || given==1){
+		$('#screen1_catSelect').modal('show')
+	}
+	else if(screen_value==2 || given==2){
+		$('#screen2_passport').modal('show')
+	}
+	else if(screen_value==3 || given==3){
+		 document_filler();
+		$('#screen3_visa').modal('show')
+	}
+	else if(screen_value==4 || given==4){
+	 	 document_filler();
+		$('#screen4_doc').modal('show')
+	}
+	else if(screen_value==5 || given==5){
+	 	 document_filler();
+		$('#screen5_confirm').modal('show')
+	}  
+	else{
+		alert('Error. "screen_value" value is beyond the scope.');
+	}
+}
+
+function screen2_catF1(){
+	if(student_cat==1){
+		$('#same_cat_error').modal('show');
+	}else{
+		if(screen_value==1){
+		  	student_cat=1;
+		  	screen_value=2;
+		}
+		else{
+			student_cat=1;
+			$('#cat-alert').remove();
+			if(screen_value >= 3){
+			 	screen_value=3;
+			 	$('#doc-alert').remove();
+				$('#visa-alert').remove();
+			}
+					
+		}
+		buffer= document.getElementById('print_canvas').innerHTML;
+		buffer= '<div id="cat-alert" class="alert alert-info">Selected Category : <strong>F-1 or F-2 : Student</strong><a class="btn btn-sm btn-primary" style="float:right" onClick="screen1_cat_select()">Edit</a></div>'+buffer;
+		setTimeout(function(){print(buffer, "print_canvas");}, 500);		
+	}
+}
+
+function screen2_catJ1(){
+	if(student_cat==2){
+		$('#same_cat_error').modal('show');
+	}else{
+		if(screen_value==1){
+			student_cat=2;
+			screen_value=2;
+		}
+		else{
+			student_cat=2;
+			$('#cat-alert').remove();
+			if(screen_value >= 3){
+			 	screen_value=3;
+			 	$('#doc-alert').remove();
+				$('#visa-alert').remove();
+			}
+		}
+		buffer= document.getElementById('print_canvas').innerHTML;
+		buffer= '<div id="cat-alert" class="alert alert-info">Selected Category : <strong>J-1 or J-2 : Student</strong><a class="btn btn-sm btn-primary" style="float:right" onClick="screen1_cat_select()">Edit</a></div>'+buffer;
+		setTimeout(function(){print(buffer, "print_canvas")}, 500);
+	}
+}
+
+
+// Passport Validation
+function screen3_passport(){
+    var x = document.getElementById("passport_confirmation");
+    if(!x.checked){
+		var temp_buffer= document.getElementById("passport_confirmation_text").innerHTML;
+		temp_buffer = '<div id="agreement_violation_p" class="alert alert-danger alert-dismissible fade in">You must agree to the following terms.</div>'+temp_buffer;
+		document.getElementById("passport_confirmation_text").innerHTML= temp_buffer;
+		setTimeout(function(){
+			$('#agreement_violation_p').remove();		
+		},1500);
+	}else{
+		 if(screen_value == 2){
+		 	x.checked= false;
+		 	$('#screen2_passport').modal('hide')
+		 	screen_value=3;
+			buffer= document.getElementById("print_canvas").innerHTML;
+		 	buffer= buffer+'<div id="pass-alert" class="alert alert-success">The passport was scanned and saved on the Desktop.<a class="btn btn-sm btn-success" style="float:right" onClick="resume(2);">Rescan</a></div>';
+			setTimeout(function(){print(buffer, "print_canvas");}, 500);
+		}else{
+			  x.checked= false;
+			  $('#screen2_passport').modal('hide')
+			  $('#pass-alert').remove();							  
+			  buffer= document.getElementById("print_canvas").innerHTML;
+			  buffer= buffer+'<div id="pass-alert" class="alert alert-success">The passport was <strong>re-scanned</strong> and saved on the Desktop.<a class="btn btn-sm btn-success" style="float:right" onClick="resume(2);">Rescan</a></div>';
+			  setTimeout(function(){print(buffer, "print_canvas");}, 500);
+		}
+	}
+}
+
+
+function screen4_visa(){
+    var x = document.getElementById("visa_confirmation");
+    if(!x.checked){
+		var temp_buffer= document.getElementById("visa_confirmation_text").innerHTML;
+		temp_buffer = '<div id="agreement_violation_v" class="alert alert-danger alert-dismissible fade in">You must agree to the following terms.</div>'+temp_buffer;
+		document.getElementById("visa_confirmation_text").innerHTML= temp_buffer;
+		setTimeout(function(){
+			$('#agreement_violation_v').remove();		
+		},1500);
+	}else{
+		 if(screen_value == 3){
+		 	x.checked= false;
+		 	$('#screen3_visa').modal('hide')
+		 	screen_value=4;
+			buffer= document.getElementById("print_canvas").innerHTML;
+		 	buffer= buffer+'<div id="visa-alert" class="alert alert-success">The Visa was scanned and saved on the Desktop.<a class="btn btn-sm btn-success" style="float:right" onClick="resume(3);">Rescan</a></div>';
+			setTimeout(function(){print(buffer, "print_canvas");}, 500);
+		}else{
+			  x.checked= false;
+			  $('#screen3_visa').modal('hide')
+			  $('#visa-alert').remove();							  
+			  buffer= document.getElementById("print_canvas").innerHTML;
+			  buffer= buffer+'<div id="visa-alert" class="alert alert-success">The Visa was <strong>re-scanned</strong> and saved on the Desktop.<a class="btn btn-sm btn-success" style="float:right" onClick="resume(3);">Rescan</a></div>';
+			  setTimeout(function(){print(buffer, "print_canvas");}, 500);
+		}
+	}
+}
+
+
+function screen5_doc(){
+    var x = document.getElementById("document_confirmation");
+    if(!x.checked){
+		var temp_buffer= document.getElementById("document_confirmation_text").innerHTML;
+		temp_buffer = '<div id="agreement_violation_d" class="alert alert-danger alert-dismissible fade in">You must agree to the following terms.</div>'+temp_buffer;
+		document.getElementById("document_confirmation_text").innerHTML= temp_buffer;
+		setTimeout(function(){
+			$('#agreement_violation_d').remove();		
+		},1500);
+	}else{
+		 if(screen_value == 4){
+		 	x.checked= false;
+		 	$('#screen4_doc').modal('hide')
+		 	screen_value=5;
+			buffer= document.getElementById("print_canvas").innerHTML;
+		 	buffer= buffer+'<div id="doc-alert" class="alert alert-success">The <strong>'+user_document+'</strong> was scanned and saved on the Desktop.<a class="btn btn-sm btn-success" style="float:right" onClick="resume(4);">Rescan</a></div>';
+			setTimeout(function(){print(buffer, "print_canvas");}, 500);
+		}else{
+			  x.checked= false;
+			  $('#screen4_doc').modal('hide')
+			  $('#doc-alert').remove();							  
+			  buffer= document.getElementById("print_canvas").innerHTML;
+			  buffer= buffer+'<div id="doc-alert" class="alert alert-success">The <strong>'+user_document+'</strong> was <strong>re-scanned</strong> and saved on the Desktop.<a class="btn btn-sm btn-success" style="float:right" onClick="resume(4);">Rescan</a></div>';
+			  setTimeout(function(){print(buffer, "print_canvas");}, 500);
+		}
+	}
+}
+
+function document_filler(){
+		if(student_cat==1){
+			/* F-1 or F-2 VISA */
+			document.getElementById('visa_category').innerHTML="F-1 or F-2";
+			document.getElementById('visa_sample').innerHTML='<img src="images/samples/F-1_visa.jpg" width="320px" aria-hidden="true" style="border:solid;">'
+			
+			/* I-20 */
+			document.getElementById('document_title').innerHTML="KU I-20";
+			document.getElementById('document_name').innerHTML="KU I-20";
+			document.getElementById('document_name_2').innerHTML="KU I-20";
+			document.getElementById('document_sample').innerHTML='<img src="images/samples/I-20.png" height="320px" aria-hidden="true" style="border:solid;">';			
+			user_document= "I-20";		
+		}
+		else if(student_cat==2){
+			/* J-1 or J-2 VISA */
+			document.getElementById('visa_category').innerHTML="J-1 or J-2";
+			document.getElementById('visa_sample').innerHTML='<img src="images/samples/J-1_visa.jpg" width="320px" aria-hidden="true" style="border:solid;">'
+			
+			/* DS-2019 */
+			document.getElementById('document_title').innerHTML="DS-2019";
+			document.getElementById('document_name').innerHTML="DS-2019";
+			document.getElementById('document_name_2').innerHTML="DS-2019";
+			document.getElementById('document_sample').innerHTML='<img src="images/samples/DS-2019.gif" height="320px" aria-hidden="true" style="border:solid;">';			
+			user_document= "DS-2019";
+		}
+		
+}
+
+function finish(){
+	if(student_cat==1){
+			window.location="i94_full_f1.html";
+
+	}else if(student_cat==2){
+			window.location="i94_full_j1.html";
+		
+	}else{
+		document.write('<h1>ERROR</h1><p class="lead">The category selected by the user was modified along the way. Please contact the following person.</p><p><strong>Chinmay Ratnaparkhi</strong><br>chinmay.ratnaparkhi@gmail.com  or  (785) 312-4046</p>');
+	}
+	
+}
+
+function checkUrl(url) {
+        var request = false;
+        if (window.XMLHttpRequest) {
+                request = new XMLHttpRequest;
+        } else if (window.ActiveXObject) {
+                request = new ActiveXObject("Microsoft.XMLHttp");
+        }
+
+        if (request) {
+        		document.write('redirecting...');
+                request.open("GET", url);
+                if (request.status == 200) { return true; }
+        }
+
+        return false;
+}
+
+</script>
+<!----- ==================================================================================================================================================================== -->
+<!-- Modal Welcome--->
+<div class="modal fade" id="screen0_welcome" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <h1>Welcome to ISS Check In</h1>
+				<p>&nbsp;</p>
+				<p class="lead">For this check in you will be performing <strong>3 tasks.</strong></p>
+				<!-- Three tasks --->
+				<div class="alert alert-danger"><p class="lead">1. &nbsp;<strong>Scanning</strong> your documents</p></div>
+				<div class="alert alert-danger"><p class="lead">2. &nbsp;Retrieving your <strong>I-94</strong></p></div>
+				<div class="alert alert-danger"><p class="lead">3. &nbsp;Uploading <strong>everything</strong> to iHawk</p></div>
+				<h1>&nbsp;</h1>
+				<!-- Bottom div--->
+				<!--<p style="font-family:Bookman Antiqua;font-size:22px;">Let us begin by scanning your immigration documents first.</p> --->
+      </div>
+      <div class="modal-footer">
+		<center>
+        <button type="button" class="btn btn-success" data-dismiss="modal" onClick="screen1_cat_select()">Alright</button>
+		</center>
+	  </div>
+    </div>
+  </div>
+</div>
+<!----- ==================================================================================================================================================================== --->
+<!-- Modal CatSelect-->
+<div class="modal fade" id="screen1_catSelect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <center><h1>Please select your category</h1></center>
+	   <h1>&nbsp;</h1>
+				<div class="row">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-8">
+						<button type="button" class="btn btn-success btn-lg btn-block" data-dismiss="modal" onClick="screen2_catF1()">
+							<h1>F-1 or F-2 Student</h1>
+						</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal" onClick="screen2_catJ1()">
+							<h1>J-1 or J-2 Student</h1>
+						</button>
+					</div>
+					<div class="col-lg-2"></div>
+				</div>
+				<h1>&nbsp;</h1>
+      </div>
+	  </div>
+    </div>
+  </div>
+</div>
+<!----- ==================================================================================================================================================================== --->
+<!-- Same Category Error-->
+<div class="modal fade" id="same_cat_error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <h1>Error</h1>
+			<p class="lead">You are already in the selected category.</p>
+      </div>
+      <div class="modal-footer">
+		<center>
+        <button type="button" class="btn btn-success" data-dismiss="modal" >Okay</button>
+		</center>
+	  </div>
+    </div>
+  </div>
+</div>
+<!----- ==================================================================================================================================================================== -->
+<!-- Modal Passport --->
+<div class="modal fade" id="screen2_passport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+	  	    <div class="row">
+				 <div class="col-sm-2">
+				 	  <img src="images/scanning/being_scanned.gif" height="75px">
+				 </div>
+				 <div class="col-sm-10">
+				 	  <h1>Scanning Passport</h1>
+				 </div>
+			</div>
+			<p>&nbsp;</p>
+			<div class="alert alert-success">
+				 <p class="lead" style="color:danger">From your passport, scan the page with <strong>your photograph and birthdate.</strong></p>
+			</div>
+			<p>&nbsp;</p>
+			<div class="row">
+    			<div class="col-sm-4">
+    				 <img src="images/samples/passport.jpg" height="350px" aria-hidden="true" style="border:solid;">
+    			</div>
+				<div class="col-sm-8">
+				<ol>
+					<li>Place your Passport in the <strong>top-right corner</strong> on the scanner glass and close the lid.</li>
+					<li>Click on the <strong>scanner icon</strong> on your Desktop.</li>
+					<li>Click on the <strong>PDF icon</strong> as shown in the picture below.</li>
+					<li>Check the file on the Desktop. It must be <strong>clear and readable</strong>.</li>				
+				</ol>
+				<p>&nbsp;</p>
+					 <center><img src="images/scanning/scanning_pdf.png" height="150"/ style="border-style:dashed;border-width:1px;"></center>
+				</div>
+			</div>
+      </div>
+      <div class="modal-footer">
+		<div class="checkbox"  style="float:left" id="passport_confirmation_text">
+			<label>
+				<input id="passport_confirmation" type="checkbox">I have scanned my Passport and saved it on Desktop.
+			</label>
+		</div>
+        <button type="button" class="btn btn-default" style="position:absolute;right:20px;" onClick="screen3_passport()">Next</button>
+	  </div>
+    </div>
+  </div>
+</div>
+<!----- ==================================================================================================================================================================== -->
+<!-- VISA SCANNING --->
+<div class="modal fade" id="screen3_visa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+       <div class="modal-body">
+	  	    <div class="row">
+				 <div class="col-sm-2">
+				 	  <img src="images/scanning/scanner.gif" height="75px">
+				 </div>
+				 <div class="col-sm-10">
+				 	  <h1>&nbsp;&nbsp;Scanning Visa</h1>
+				 </div>
+			</div>
+			<p>&nbsp;</p>
+			<div class="alert alert-success">
+				 <p class="lead" style="color:danger">Scan your <strong>Valid <span id="visa_category"></span> or Most Recent Visa.</strong></p>
+			</div>
+			<p>&nbsp;</p>
+			<div class="row">
+    			<div class="col-sm-5">
+    				 <span id="visa_sample"></span>
+    			</div>
+				<div class="col-sm-7">
+				<ol>
+					<li>Open your passport to the Visa page.
+					<li>Place it in the <strong>top-right corner</strong> on the scanner glass and close the lid.</li>
+					<li>Click on the <strong>scanner icon</strong> on your Desktop.</li>
+					<li>Click on the <strong>PDF icon</strong> as before.</li>
+					<li>Check the file on the Desktop. It must be <strong>clear and readable</strong>.</li>				
+				</ol>
+				</div>
+			</div>
+      </div>
+      <div class="modal-footer">
+		<div class="checkbox"  style="float:left" id="visa_confirmation_text">
+			<label>
+				<input id="visa_confirmation" type="checkbox">I have scanned my Visa and saved it on Desktop.
+			</label>
+		</div>
+        <button type="button" class="btn btn-default" style="position:absolute;right:20px;" onClick="screen4_visa()">Next</button>
+	  </div>
+    </div>
+  </div>
+</div>
+<!----- ==================================================================================================================================================================== -->
+<!-- I-20 or DS-2019 SCANNING --->
+<div class="modal fade" id="screen4_doc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+  	<div class="modal-content">
+      <div class="modal-body">
+	  	   <div class="row">
+				 <div class="col-sm-2">
+				 	  <img src="images/scanning/being_scanned.gif" height="75px">
+				 </div>
+				 <div class="col-sm-10">
+				 	  <h1>Scanning <span id="document_title"></span></h1>
+				 </div>
+			</div>
+			<p>&nbsp;</p>
+			<div class="alert alert-success">
+				 <p class="lead" style="color:danger">Scan the <strong>first page of your <span id="document_name"></span></strong>.</p>
+			</div>
+			<div class="row">
+    			<div class="col-sm-5">
+    				 <span id="document_sample"></span>
+    			</div>
+				<div class="col-sm-7">
+				<ol>
+					<li><span style="color:red">Sign your document before you scan it.</span></li>
+					<li>Place your document in the <strong>top-right corner</strong> on the scanner glass and close the lid.</li>
+					<li>Click on the <strong>scanner icon</strong> on your Desktop.</li>
+					<li>Click on the <strong>PDF icon</strong> as before.</li>
+					<li>Check the file on the Desktop. It must be <strong>clear and readable</strong>.</li>				
+				</ol>
+				</div>
+			</div>
+			
+      </div>
+      <div class="modal-footer">
+		<div class="checkbox"  style="float:left" id="document_confirmation_text">
+			<label>
+				<input id="document_confirmation" type="checkbox">I have scanned my <span id="document_name_2"></span> and saved it on Desktop.
+			</label>
+		</div>
+        <button type="button" class="btn btn-default" style="position:absolute;right:20px;" onClick="screen5_doc()">Next</button>
+	  </div>
+    </div>
+  </div>
+</div>
+<!----- ==================================================================================================================================================================== -->
+<!-- Confirmation--->
+<div class="modal fade" id="screen5_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <h1>Scanning Completed!</h1>
+				<p>&nbsp;</p>
+				<p class="lead">You have successfully completed the <strong>first step&nbsp;</strong>of your Check-In.</p>
+				<!-- Three tasks --->
+				<div class="alert alert-success"><p class="lead"><span class="glyphicon glyphicon-check"></span>&nbsp;<strong>Scanning</strong> your documents</p>
+					 
+				</div>
+				<div class="alert alert-danger"><p class="lead">2. &nbsp;Retrieving your <strong>I-94</strong></p></div>
+				<div class="alert alert-danger"><p class="lead">3. &nbsp;Uploading <strong>everything</strong> to iHawk</p></div>
+				<h1>&nbsp;</h1>
+				<!-- Bottom div-->
+      </div>
+      <div class="modal-footer">
+		<center>
+        <button type="button" class="btn btn-success" data-dismiss="modal" onClick="finish()">Alright</button>
+		</center>
+	  </div>
+    </div>
+  </div>
+</div>
+<!----- ==================================================================================================================================================================== --->
+  <div class="container">
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <!-- The header Row --> 
+	<div class="row">
+		<div class="col-lg-2"></div>
+		<div class="col-lg-8">
+			<div id="header_tron"></div>
+		</div>
+		<div class="col-lg-2"></div>
+	</div>
+	
+	<!-- The Body Row --> 
+	<div class="row">
+		<div class="col-lg-2" id="expansion_row">
+			
+		</div>
+		<div class="col-lg-8">
+			<div id="print_canvas" class="jumbotron"></div>
+		</div>
+		<div id="r-sidebar"class="col-lg-2">
+		</div>
+	</div>
+	
+	<!-- The Footer Row --> 
+	<div class="row">
+		<div class="col-lg-2"></div>
+		<div class="col-lg-8">
+			<div id="continue_center">
+			</div>
+		</div>
+		<div id="r-sidebar"class="col-lg-2">
+		</div>
+	</div>
+</div>
+</body>
+</html>

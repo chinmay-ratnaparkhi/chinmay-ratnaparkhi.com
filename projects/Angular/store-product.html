@@ -1,0 +1,27 @@
+<h3>{{product.name}} <em class="pull-right">{{product.price | currency }}</em></h3><br />
+<span ng-repeat= 'img in product.images'>
+	<img ng-src= "{{ img }}" height="100"/>&nbsp;
+</span>
+
+
+<div class="enclosure">
+	<h5>
+		<ul class="nav nav-pills" >
+			<li ng-class="{ active : tab.isCurrent(1) }">
+				<a href ng-click='tab.makeMeActive(1)'>Description</a>
+			</li>
+			<li ng-class="{ active : tab.isCurrent(2) }">
+				<a href ng-click='tab.makeMeActive(2)'>Specifications</a>
+			</li>
+			<li ng-class="{ active : tab.isCurrent(3) }">
+				<a href ng-click='tab.makeMeActive(3)'>Review</a>
+			</li>
+		</ul>
+	</h5>
+	<div class="panel" ng-show='tab.isCurrent(1)' product-description></div>
+	<div class="panel" ng-show='tab.isCurrent(2)' product-specs></div>
+	<div class="panel" ng-show='tab.isCurrent(3)' product-reviews></div>
+	<span ng-controller="shoppingController as shopping"
+		<a class="btn btn-pink" ng-hide="tab.isCurrent(3);" ng-click="shopping.addItem(product)" ><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Add to Cart</a>
+	
+</div>

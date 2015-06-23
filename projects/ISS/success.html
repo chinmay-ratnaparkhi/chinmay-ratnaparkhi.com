@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Chinmay Ratnaparkhi</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<style>
+	
+	.rotate90 {
+		-webkit-transform: rotate(90deg);
+		-moz-transform: rotate(90deg);
+		-o-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		transform: rotate(90deg);
+	}
+
+	#r-corner {
+		border-radius: 10px;
+		border: 1px solid #EFF5FB;
+		padding: 10px; 
+	}
+	
+	#header-box-primary {
+		border-radius: 10px;
+		padding: 25px;
+		background:#A9D0F5;
+	}
+	
+	#header-box-secondary {
+		border-radius: 10px;
+		padding: 10px;
+		background:#A9D0F5;
+	}
+	
+	li {
+       margin-bottom: 15px;
+	}
+
+	</style>	
+</head>
+<body onLoad="initiate();">
+<script>
+
+function initiate(){
+	$('#success').modal('show');
+}
+</script>
+
+<!-- Confirmation-->
+<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+       <h1>Completed!</h1>
+				<p>&nbsp;</p>
+				<p class="lead">You have successfully completed this Check-In.</p>
+				<!-- Three tasks -->
+				<div class="alert alert-success">
+					<p class="lead"><span class="glyphicon glyphicon-check"></span>&nbsp;Scanning your documents</p>
+				</div>
+				<div class="alert alert-success">
+					<p class="lead"><span class="glyphicon glyphicon-check"></span>&nbsp;Retrieving your I-94</p>
+				</div>
+				<div class="alert alert-success">
+					<p class="lead"><span class="glyphicon glyphicon-check"></span>&nbsp;Uploading everything to iHawk</p>
+				</div>
+				<hr>
+				<div class="alert alert-danger"><h3 >Please DELETE your files on the Desktop.</h3></div>
+      </div>
+      <div class="modal-footer">
+	  </div>
+    </div>
+  </div>
+  <center><a class="btn btn-warning btn-lg" style="top:20px;" onClick='window.location="http://iss.ku.edu/checkin"'>Reset</a></center>
+</div>
+<!--- ======================================================================================================================================================--->
+<iframe id= "stage_area" src="https://ihawk.ku.edu/istart/controllers/client/Logout.cfm" width="100%" style="position:absolute;left:0px;height:100%" onLoad="checkAndSet();"></iframe>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{
+	background-color:#FE2E9A;
+	color:white;
+}
+
+.head-space{
+	margin-top:50px;
+}
+
+.center {
+	margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    text-align: center;
+}
+
+.huge{
+	font-size: 58px;
+}
+
+.enclosure{
+	position:center;
+	padding:10px;
+	border:solid;
+	border-width:1px;
+	border-color:#D8D8D8;
+	border-radius:10px;
+}
+
+
+@media screen and (max-width: 700px) {
+	.review-window{
+			padding:30px;
+			width:90%
+		}
+}
+
+@media screen and (min-width: 700px) {
+	@media screen and (max-width: 1100px) {
+		.review-window{
+			padding:30px;
+			width:50%
+		}
+	}
+}
+
+@media screen and (min-width: 1100px){
+	.review-window{
+			padding:30px;
+			width:400px;
+		}
+}
+
+.btn.btn-pink{
+	margin : 30px;
+	background-color:#B4045F;
+	color:white;	
+}
+
+.btn.btn-pink:hover{
+	margin : 30px;
+	background-color:#FE2E9A;
+	color:white;
+}
+
+
+.ng-dirty.ng-invalid{
+	border-color: #DF0101;
+}
+.ng-dirty.ng-valid{
+	border-color: #3ADF00;
+}
+
+@media screen and (max-width: 978px){
+	.shopping-cart{
+		padding:30px;
+		margin-left: 17%;
+		width: 70%;
+	}
+
+	.container{
+		padding:30px;
+		width: 70%;
+	}
+}
+
+@media screen and (min-width: 979px){
+	.shopping-cart{
+		position: absolute;
+		right: 3%;
+		width: 150px;
+		position:fixed;
+		top:18%;
+	}
+	.container{
+		padding-left: 160px;
+		padding-right: 160px;
+	}
+}

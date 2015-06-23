@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Chinmay Ratnaparkhi</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+<style>
+#approve_div { z-index: 1000; }
+</style>
+<script>
+
+var frame_loads=0;
+var log_failed=0;
+upload_flag=0;
+
+function checkAndSet(){
+	frame_loads++;
+	if(frame_loads==1){
+			$('#instruct_completion').modal('show');
+	}
+
+}
+
+function approval(){
+	document.getElementById("password_port").innerHTML= '<div class="form-group"><input type="password" class="form-control" id="password_box" placeholder="Administrative Password" onkeypress="return runScript(event)"></div><div id="message_box"></div><a class="btn btn-default" onClick="password_submit()">Submit</a>';
+	document.getElementById("password_box").focus();
+}
+
+function runScript(e) {
+    if (e.keyCode == 13) {
+		password_submit();
+		return false;
+    }
+}
+
+function password_submit(){
+	var entered_pass= document.getElementById("password_box").value;
+	if(entered_pass == 'isscheckin'){
+		document.getElementById('stage_area').src="https://ihawk.ku.edu/istart/controllers/client/ClientEngine.cfm?serviceid=EFormGroupProvider&eformGroup=18&menuFlag=true";
+		document.getElementById('approval_port').innerHTML= '<a class= "btn btn-danger btn-lg" onClick="submit_approval()"><h1>Approve</h1></a>'
+		$('#instruct_completion').modal('hide');
+	}else{
+		document.getElementById("password_box").value= '';
+		var error_location= document.getElementById("message_box");
+		error_location.innerHTML='';
+		error_location.innerHTML= '<div class="alert alert-danger" style="float:left;"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Invalid Password!</div>';
+		setTimeout(function(){error_location.innerHTML='';}, 1500);
+	}
+}
+
+function submit_approval(){
+	window.location='success.html';
+}
+
+</script>		
+</head>
+	
+<body>
+<!--- ===================================================================================================================================-->
+<div class="modal fade" id="instruct_completion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-body">
+		   <h1>Please Raise your hand!</h1>
+		   <hr>
+		   <p class="lead">You have completed the items on your checklist. Please raise your hand and ask for subsequent instructions.</p>
+		   <center><img src="images/raiseHand.gif" height="260"></center>
+		</div>
+		<div class="modal-footer" id="password_port">
+		<center>
+			<button type="button" class="btn btn-primary" onClick="approval();">Administrative Approval</button>
+		</center>
+	  </div>
+	  </div>
+    </div>
+  </div>
+</div>
+<!--=====================================================================================================================================-->
+
+	<iframe id= "stage_area" width="100%" style="position:absolute;left:0px;height:100%" onLoad="checkAndSet();"></iframe>
+	<div style="position:absolute;left:46%;top:75px;"><center><span id= "approval_port"></span></center></div>
+</body>	
+</html>

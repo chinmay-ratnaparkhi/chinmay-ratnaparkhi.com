@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Chinmay Ratnaparkhi</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<link href= "ul-styler.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<style>
+		.jumbotron {
+			background:#F2EFFB;
+		}
+	</style>
+	<script type="text/javascript">
+	
+	function runScript(e) {
+    if (e.keyCode == 13) {
+		password_submit();
+		return false;
+    }
+}
+	
+	function show_mod(){
+	
+	$("#myModal").modal("hide");
+		$("#frndz_pw").modal("show");
+		document.getElementById("password_box").focus();
+		
+	}
+	
+	function password_submit(){
+		var temp_pass= document.getElementById("password_box").value;
+		if(temp_pass=='balaji0306@gmail.com')
+		{
+			window.location='PASSWRD_AUTH=TrueWatchFRNDS=TrueSessionVal=AUTHNTCTD_USR-Watch-friends-online-with-french-voiceover-french-subtitlesARIAHIDDEN=False.html';
+		}else{
+			document.getElementById("password_box").value= '';
+		}
+	}
+	
+	
+		$(document).ready(function(){
+			setTimeout(function(){generator();}, 3000);
+			$('[data-toggle="tooltip"]').tooltip(
+				{placement : 'top'}
+			);
+			$('[data-toggle="popover"]').popover()
+		});
+		
+		function generator()
+		{
+			//createAlert("&nbsp;&nbsp;Timed Alert test 1!");
+		}
+		
+		function alertTimeout(wait){
+			setTimeout(
+				function()
+				{
+					//$('#main_alerts').children('.alert:first-child').remove();
+				}
+				, wait);
+}
+		
+		function createAlert(alert_message){
+		
+			var alert_head='<div id= "alert-message" class="alert alert-danger alert-dismissible fade in"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>&nbsp;';
+			var alert_footer='<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+			
+			var alert_text= alert_message;
+			
+			var complete_alert= alert_head+alert_text+alert_footer;
+			document.getElementById("main_alerts").innerHTML+= complete_alert;
+			alertTimeout(5000);
+			
+		
+		}
+		function startTime()
+		{
+			var today=new Date();
+			var h=today.getHours();
+			var m=today.getMinutes();
+			var s=today.getSeconds();
+				m = checkTime(m);
+				s = checkTime(s);
+				if(h > 12) h= h-12;
+			document.getElementById('current_time').innerHTML = h+":"+m+":"+s;
+			var t = setTimeout(function(){startTime()},500);
+		}
+	
+		function checkTime(i) 
+		{
+			if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+	</script>
+</head>
+<body onload= "startTime()">
+
+
+	<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">My Bookmarks</h4>
+			</div>
+			<div class="modal-body">
+				<center>
+					<div class="btn-group" role="group" aria-label="my_bookmarks">
+						<a target="_blank" type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="Gmail" href="https://mail.google.com/mail/u/0/#inbox"><img src="images/icons/gmail.png" height="30"></a>
+						<a target="_blank" type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="Blackboard" href="https://courseware.ku.edu/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_1_1"><img src="images/icons/blackboard.png" height="30"></a>
+						<a target="_blank" type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="ISS KU" href="http://iss.ku.edu"><img src="images/icons/ku.png" height="30"></a>
+						<a target="_blank" type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="Facebook" href="https://www.facebook.com/chinmay.tunes"><img src="images/icons/facebook.png" height="30"></a>
+						<a target="_blank" type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="GitHub" href="https://github.com/chinmay-ratnaparkhi"><img src="images/icons/git.png" height="30"></a>
+						<a target="_blank" type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="G Drive" href="https://drive.google.com/drive/u/0/my-drive"><img src="images/icons/googledrive.png" height="30"></a>
+						<a target="_blank" type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="Netflix" href="http://www.netflix.com/WiHome"><img src="images/icons/netflix.png" height="30"></a>
+						<a target="_blank" type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="CheckIn" href="projects/ISS/StationSelection.html"><img src="images/icons/checkIn.png" height="30"></a>
+						<a target="_blank" type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="FRNDZ" onClick='show_mod();'><img src="images/icons/frnds.png" height="30"></a>
+					</div>
+				</center>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- !! END OF THE MODAL -->
+
+
+
+<div class="modal fade" id="frndz_pw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">User Authentication</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<input type="password" class="form-control" id="password_box" placeholder="Administrative Password" onkeypress="return runScript(event)">
+				</div>
+				<div id="message_box"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- !! END OF THE MODAL -->
+
+<div class="container">
+	<h1>&nbsp;</h1>
+	<!--	<div id="bookmarkbar_inpage" class="row">
+			<div class="col-lg-10"><br></div>
+			<div class="col-lg-2">
+				&nbsp;&nbsp;
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+					<span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+					&nbsp;View Bookmarks
+				</button>
+			</div>
+		</div>
+		<p>&nbsp;</p>
+		--->
+		
+		
+	<div class="row">
+		<div class="col-lg-5">
+		</div>
+	</div>
+	<div class="row">
+			<div class="col-lg-4">
+				<center><img class="img-circle" src="images/ChinmayRatnaparkhi.jpg" alt="Generic placeholder image" style="width: 220px; height: 220px;"></center>
+				<br/><br/>
+				<ul class="vcard-details">
+					<li class="insti">The University of Kansas</li>
+					<li class="location">Lawrence, KS, United States of America</li>
+					<li class="email"><a class="email" href="mailto:chinmay.ratnaparkhi@gmail.com">chinmay.ratnaparkhi@gmail.com</a></li>
+				</ul>
+			</div ><!-- /.col-lg-4 -->
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="jumbotron">
+						<h1 style="font-size:60">Chinmay Ratnaparkhi</h1>
+						<p><br/>Electrical Engineering and Computer Science<br/><strong>University of Kansas</strong></p>
+						<div class="row">
+							<div class="col-lg-6"></div>
+							<div class="col-lg-6">
+								<!--Stuff goes in here-->
+							</div>
+						</div>
+						<center>
+						<div class="row">
+							<div class="col-lg-3"><p><a class="btn btn-default"  data-toggle="tooltip" data-placement="left"  title="Documentation of programming work for work, class projects, laboratory assigments and independent projects."  href="https://github.com/chinmay-ratnaparkhi" target="_blank" role="button"><img src="images/git.png" height="40">&nbsp;&nbsp;Visit GitHub&nbsp;&nbsp;&nbsp;&nbsp;</a></p></div>
+							<div class="col-lg-3"> <p><a class="btn btn-default" href="https://www.linkedin.com/in/chinmayratnaparkhi" target="_blank" role="button"><img src="images/linkedin.png" height="40">&nbsp;&nbsp;Visit LinkedIn&nbsp;</a></p></div>
+							<div class="col-lg-3"><p><a class="btn btn-default" href="https://iss.ku.edu/chinmay-ratnaparkhi" target="_blank" role="button"><img src="images/ku.png" height="40">&nbsp;&nbsp;Visit ISS-KU&nbsp;&nbsp;&nbsp;&nbsp;</a></p></div>
+							<div class="col-lg-3"> <p><a class="btn btn-default" href="https://www.facebook.com/chinmay.tunes" target="_blank" role="button"><img src="images/facebook.png" height="40">&nbsp;&nbsp;Visit Facebook</a></p></div>
+						</div>
+						</center>
+					</div >
+				</div>
+			</div><!-- /.col-lg-4 -->
+		</div >
+		<div class="row">
+			<div class="col-lg-12" id="main_alerts"></div>
+		</div>
+
+		<h1 style="font-size:48px;padding:50px;text-align:center">Recent Work</h1>
+		<div class="row">
+			<div class="col-lg-4">
+				<div class= "jumbotron">
+					<center><img class="img-circle" src="images/ku.png" alt="Generic placeholder image" style="width: 150px; height: 150px;"></center>
+					<h3>International Student Services, KU</h3>
+					<a tabindex="0" class="btn btn-primary" data-toggle="popover" data-trigger="focus" title="International Student Services" data-placement="bottom" data-content="This website was developed for the International Student Services office at the University of Kansas. Status: Live.">Info</a>
+					<a class="btn btn-default" href="https://iss.ku.edu/" target="_blank" role="button">Visit Website</a >
+				</div>
+			</div>	
+			<div class="col-lg-4">
+				<div class= "jumbotron">
+					<center><img class="img-circle" src="images/geo.png" alt="Generic placeholder image" style="width: 150px; height: 150px;"></center>
+					<h3>Research Project, KU Geography</h3>
+					<a tabindex="0" class="btn btn-primary" data-toggle="popover" data-trigger="focus" title="Department of Geography" data-placement="left" data-content="This website was developed for the department of Geography at KU in Fall 2014, specifically for Dr. Herlihy. Status: Live.">Info</a>
+					&nbsp;<a class="btn btn-default" href="projects/Geography/index.html" target="_blank" role="button">Visit Website</a>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class= "jumbotron">
+					<center><img class="img-circle" src="images/softEng.jpg" alt="Generic placeholder image" style="width: 150px; height: 150px;"></center>
+					<h3 >EECS 448 - Software Engineering</h3>
+					<a tabindex="0" class="btn btn-primary" role="button" data-toggle="popover" data-trigger="focus" title="EECS 448" data-placement="bottom" data-content="This website was hosted on the departmental server for students enrolled in EECS 448 in Spring 2015. Status: Terminated.">Info</a>
+					&nbsp;<a class="btn btn-default" href="projects/EECS448/index.html" target="_blank" role="button">Visit Website</a>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class= "jumbotron">
+					<center><img class="img-circle" src="images/checkin.png" alt="Generic placeholder image" style="width: 150px; height: 150px;"></center>
+					<h3>Summer 2015 CheckIn - ISS, KU</h3>
+					<a tabindex="0" class="btn btn-primary" data-toggle="popover" data-trigger="focus" title="International Student Services" data-placement="bottom" data-content="This website was developed for the International Student Services office at the University of Kansas. Status: Live.">Info</a>
+					<a class="btn btn-default" href="projects/ISS/StationSelection.html" target="_blank" role="button">Visit Website</a >
+				</div>
+			</div>	
+			<div class="col-lg-4">
+				<div class= "jumbotron">
+					<center><img class="img-circle" src="images/animation.png" alt="Generic placeholder image" style="width: 150px; height: 150px;"></center>
+					<h3>Animation Project</h3>
+					<p class="muted">Perception of motion based on shadows of the objects.</p>
+					&nbsp;<a class="btn btn-default" href="projects/Shadow/Shadow.html" target="_blank" role="button">Visit Website</a>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class= "jumbotron">
+					<center><img class="img-circle" src="images/gems.jpg" alt="Generic placeholder image" style="width: 150px; height: 150px;"></center>
+					<h3>AngularJS Project</h3>
+					<p class="muted">Practice project - GemStore for the Flatlanders</p>
+					<a tabindex="0" class="btn btn-primary" data-toggle="popover" data-trigger="focus" title="GemStore Simulation" data-placement="bottom" data-content="Presents description, specifications and reviews for each of the products. A user may type up a review, get a live preview when they type and post it on the page. (server interactions to be added).">Info</a>
+					&nbsp;<a class="btn btn-default" href="projects/Angular/index.html" target="_blank" role="button">Visit Website</a>
+				</div>
+			</div>
+			
+			
+			
+		</div>
+		<hr>
+		<p align="justify" style="font-size:18">Thank you very much for your participation in EECS 448 - Software Engineering I in Spring 2015.</p>
+    
+</div > <!-- /container -->
+</body>
+</html>

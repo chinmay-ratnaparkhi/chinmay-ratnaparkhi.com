@@ -1,0 +1,15 @@
+li.insti{
+   list-style-image: url('images/li-icons/avatar.png');
+}
+li.location{
+   list-style-image: url('images/li-icons/location.png');
+}
+li.email{
+   list-style-image: url('images/li-icons/email.png');
+}
+li.url{
+   list-style-image: url('images/li-icons/link.png');
+}
+li.lastUpdt{
+   list-style-image: url('images/li-icons/timer.png');
+}

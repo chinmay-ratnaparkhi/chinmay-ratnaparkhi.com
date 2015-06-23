@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Chinmay Ratnaparkhi</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+<script>
+
+var frame_loads=0;
+var log_failed=0;
+upload_flag=0;
+
+function checkAndSet(){
+	frame_loads++;
+	
+	
+	if(frame_loads==1){
+			$('#instruct_i20').modal('show');
+	}else if(frame_loads==2){
+		upload_visa();
+	}
+
+}
+function print_i20(){
+
+	var print_station = document.getElementById('instruction_log');
+	print_station.innerHTML='<div id="i20_note" class="alert alert-danger"><p class="lead"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Scroll Down, choose file and click "Submit"</p></div>';
+}
+
+function upload_visa(){
+	$("i20_note").remove();
+	document.getElementById("instruction_log").innerHTML='<div id="complete_note" class="alert alert-success"><p class="lead">&nbsp;Click next when you are ready to upload your next document.</p></div>';
+	document.getElementById("next_port").innerHTML='<a class="btn btn-success" href="visaupload.html"><h4>&nbsp;Next&nbsp;</h4></a>'
+	//fram_loads becomes 4.
+}
+</script>		
+</head>
+	
+<body>
+<!--- ===================================================================================================================================
+-->
+<div class="modal fade" id="instruct_i20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-body">
+		   <h1>Upload I-20</h1>
+		   <hr>
+		   <div class="alert alert-info"><p class="lead">Scroll Down to the bottom of the page.</p></div>
+		   <div class="alert alert-info"><p class="lead">Click "Choose File", find your I-20 and Click "Submit"</p></div>
+		</div>
+		<div class="modal-footer">
+		<center>
+			<button type="button" class="btn btn-success" data-dismiss="modal" onClick="print_i20();">Okay</button>
+		</center>
+	  </div>
+	  </div>
+    </div>
+  </div>
+</div>
+<!--=====================================================================================================================================-->
+<!-- Passport Upload Instructions -->
+<div class="modal fade" id="skipper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<div class="modal-body">
+		   <h1>Skip this document?</h1>
+		   <hr>
+		   <p class="lead">Have you <strong>already uploaded</strong> this document to iHawk?</p>
+		</div>
+		<div class="modal-footer">
+		<center>
+			<button type="button" class="btn btn-success" data-dismiss="modal" onClick="skip_doc();">Yes</button>
+			<button type="button" class="btn btn-danger" data-dismiss="modal">&nbsp;No&nbsp;</button>
+		</center>
+	  </div>
+	  </div>
+    </div>
+  </div>
+</div>
+<!--=====================================================================================================================================-->
+	<iframe id= "stage_area" src="https://ihawk.ku.edu/istart/controllers/client/ClientEngine.cfm?serviceid=EFormI200ServiceProvider" width="100%" style="position:absolute;left:0px;height:100%;" onLoad="checkAndSet();"></iframe>
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10" id="instruction_log"></div>
+			<div class="col-xs-1" id="next_port"></div>
+		</div>
+</body>	
+</html>

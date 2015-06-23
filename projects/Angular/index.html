@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app='store'>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/gemStore.js"></script>
+	<script src="js/product.js"></script>
+	<script src="js/purchased.js"></script>
+	<link rel="stylesheet" href="css/gemStore.css">
+  </head>
+  <body ng-controller='StoreController as store' >
+	<h1 class="huge center">Flatlanders' GemStore</h1>
+	<h3 class="muted center">Diamonds are Forever!</h3>
+	<shopping-cart ></shopping-cart>
+	<div class="container">
+		<ul><li class="list-group-item"  store-product class="list-group" ng-repeat="product in store.products"></li></ul>
+	</div>
+  </body>
+</html>
